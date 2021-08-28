@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="de" data-theme=""><head>
+    <title> opsblog.de | SQL Server localdb – Mehrere Versionen verwalten </title>
+
+    
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.87.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Memorien aus dem Leben eines XOps">
+    
+    <link rel="stylesheet"
+          href="/css/style.min.4d3663c7794780cdf00e772bf7d6494f9b6a9bd42fb29baae1cd12bfa94a9563.css"
+          integrity="sha256-TTZjx3lHgM3wDncr99ZJT5tqm9Qvspuq4c0Sv6lKlWM="
+          crossorigin="anonymous"
+          type="text/css">
+    
+    <link rel="stylesheet"
+        href="/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css"
+        integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS&#43;yuWSR4="
+        crossorigin="anonymous"
+        type="text/css">
+    
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
+    crossorigin="anonymous" />
+
+    
+    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+
+    <link rel="canonical" href="/2017/01/06/sql-server-localdb-mehrere-versionen-verwalten/">
+
+    
+    
+    
+    
+    <script type="text/javascript"
+            src="/js/anatole-header.min.0c05c0a90d28c968a1cad4fb31abd0b8e1264e788ccefed022ae1d3b6f627514.js"
+            integrity="sha256-DAXAqQ0oyWihytT7MavQuOEmTniMzv7QIq4dO29idRQ="
+            crossorigin="anonymous"></script>
+
+
+    
+        
+        
+        <script type="text/javascript"
+                src="/js/anatole-theme-switcher.min.47918423907d577c1f04c2fd28730186eca486fb18e52fc882c3c7ad5f2540b1.js"
+                integrity="sha256-R5GEI5B9V3wfBML9KHMBhuykhvsY5S/IgsPHrV8lQLE="
+                crossorigin="anonymous"></script>
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://opsblog.de/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="SQL Server localdb – Mehrere Versionen verwalten"/>
+<meta name="twitter:description" content="Vor einiger Zeit habe ich HIER schon mal etwas über SQLServer 2012 localdb geschrieben.
+Mittlerweile gibt es von der localdb installation mehrere Versionen (Aktuell: 2012 / 2014 / 2016).
+Um Herauszufinden welche Versionen auf dem System installiert sind, kann der Befehl „sqllocaldb versions“ genutzt werden:
+E:\Programme\cmder&gt;sqllocaldb versions
+Microsoft SQL Server 2012 (11.0.5058.0)
+Microsoft SQL Server 2014 (12.0.4100.1)
+Microsoft SQL Server 2016 (13.0.1601.5)
+Microsoft SQL Server 2017 (14.0.1000.169)
+Standardmäßig wird eine neue Datenbank-Instanz über den „Create“-Befehl mit der aktuelleren Version angelegt.
+Möchte man eine Instanz mit der 2012er Version anlegen, geht dies so:
+E:\Programme\cmder&gt;sqllocaldb create SQL2012 11.0.5058.0
+LocalDB instance &quot;SQL2012&quot; created with version 11.0.5058.0.
+Und für die 2014er Version so:
+E:\Programme\cmder&gt;sqllocaldb create SQL2014 12.0.4100.1
+LocalDB instance &quot;SQL2014&quot; created with version 12.0.4100.1.
+Ebenfalls kann so auch explizit eine 2016er Instanz angelegt werden:
+E:\Programme\cmder&gt;sqllocaldb create SQL2016 13.0.1601.5
+LocalDB instance &quot;SQL2016&quot; created with version 13.0.1601.5.
+Oder für eine 2017er Instanz:
+E:\Programme\cmder&gt;sqllocaldb create SQL2017 14.0.1000.169
+LocalDB instance &quot;SQL2017&quot; created with version 14.0.1000.169.
+"/>
+
+
+    
+
+	<link rel="stylesheet" type="text/css" href="/css/syntax.css"> 	
+</head>
+<body><div class="sidebar . ">
+    <div class="logo-title">
+        <div class="title">
+            <img src="/img/logo.png" alt="profile picture">
+            <h3 title=""><a href="/">opsblog.de</a></h3>
+            <div class="description">
+                <p>Memorien aus dem Leben eines XOps</p>
+            </div>
+        </div>
+    </div>
+    <ul class="social-links">
+        
+    </ul>
+	
+    <div class="footer">
+		
+		<h3 title="">Tags</h3>
+		<ul class="social-links">
+		
+			<li><a class="categorymini" href="https://opsblog.de/categories/linux/">Linux</a></li> 
+		
+			<li><a class="categorymini" href="https://opsblog.de/categories/arduino/">Arduino</a></li> 
+		
+			<li><a class="categorymini" href="https://opsblog.de/categories/mssql/">MSSQL</a></li> 
+		
+		</ul>
+	
+        <div class="by_farbox">&copy; opsblog.de  2021 </div>
+    </div>
+</div>
+<div class="main">
+    <div class="page-top  . ">
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </a>
+    <ul class="nav" id="navMenu">
+        
+        
+            
+            <li><a 
+                   href="/"
+                        
+                   title="">Home</a></li>
+        
+            
+            <li><a 
+                   href="/post/"
+                        
+                   title="">Blog-Post Liste</a></li>
+        
+            
+            <li><a 
+                   href="/categories/"
+                        
+                   title="">Tag Liste</a></li>
+        
+            
+            <li><a 
+                   href="/search/"
+                        
+                   title="">Suche</a></li>
+        
+            
+            <li><a 
+                   href="/kontakt/"
+                        
+                   title="">Kontakt</a></li>
+        
+            
+            <li><a 
+                   href="/datenschutz/"
+                        
+                   title="">Datenschutz</a></li>
+        
+            
+            <li><a 
+                   href="/impressum/"
+                        
+                   title="">Impressum</a></li>
+        
+        
+        
+            <li class="theme-switch-item">
+                <a class="theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="autopagerize_page_element">
+        <div class="content">
+    <div class="post  . ">
+        <div class="post-content">
+            
+            <div class="post-title">
+                <h3>SQL Server localdb – Mehrere Versionen verwalten</h3>
+                
+                    <div class="info">
+                        <em class="fas fa-calendar-day"></em>
+                        <span class="date"> 
+                                                06.01.2017 - 14:16 Uhr
+                                           </span>
+                        <em class="fas fa-stopwatch"></em>
+                        <span class="reading-time">2 Minuten zum Lesen</span>
+                    </div>
+                
+            </div>
+
+            <p>Vor einiger Zeit habe ich <a href="http://frickelblog.de/2013/01/24/sql-server-2012-localdb/">HIER</a> schon mal etwas über SQLServer 2012 localdb geschrieben.<br>
+Mittlerweile gibt es von der localdb installation mehrere Versionen (Aktuell: 2012 / 2014 / 2016).</p>
+<p>Um Herauszufinden welche Versionen auf dem System installiert sind, kann der Befehl „sqllocaldb versions“ genutzt werden:</p>
+<pre><code>E:\Programme\cmder&gt;sqllocaldb versions
+Microsoft SQL Server 2012 (11.0.5058.0)
+Microsoft SQL Server 2014 (12.0.4100.1)
+Microsoft SQL Server 2016 (13.0.1601.5)
+Microsoft SQL Server 2017 (14.0.1000.169)
+</code></pre><p>Standardmäßig wird eine neue Datenbank-Instanz über den „Create“-Befehl mit der aktuelleren Version angelegt.<br>
+Möchte man eine Instanz mit der 2012er Version anlegen, geht dies so:</p>
+<pre><code>E:\Programme\cmder&gt;sqllocaldb create SQL2012 11.0.5058.0
+LocalDB instance &quot;SQL2012&quot; created with version 11.0.5058.0.
+</code></pre><p>Und für die 2014er Version so:</p>
+<pre><code>E:\Programme\cmder&gt;sqllocaldb create SQL2014 12.0.4100.1
+LocalDB instance &quot;SQL2014&quot; created with version 12.0.4100.1.
+</code></pre><p>Ebenfalls kann so auch explizit eine 2016er Instanz angelegt werden:</p>
+<pre><code>E:\Programme\cmder&gt;sqllocaldb create SQL2016 13.0.1601.5
+LocalDB instance &quot;SQL2016&quot; created with version 13.0.1601.5.
+</code></pre><p>Oder für eine 2017er Instanz:</p>
+<pre><code>E:\Programme\cmder&gt;sqllocaldb create SQL2017 14.0.1000.169
+LocalDB instance &quot;SQL2017&quot; created with version 14.0.1000.169.
+</code></pre><p>Hier noch einmal die Komplette SQL Server localdb Hilfe:</p>
+<pre><code>E:\Programme\cmder&gt;sqllocaldb -?
+Microsoft (R) SQL Server Express LocalDB Command Line Tool
+Version 11.0.5058.0
+Copyright (c) Microsoft Corporation.  All rights reserved.
+
+Usage: SqlLocalDB operation [parameters...]
+
+Operations:
+
+ -?
+ Prints this information
+
+ create|c &quot;instance name&quot; [version-number] [-s]
+    Creates a new LocalDB instance with a specified name and version
+    If the [version-number] parameter is omitted, it defaults to the
+    SqlLocalDB product version.
+    -s starts the new LocalDB instance after it's created
+
+ delete|d &quot;instance name&quot;
+    Deletes the LocalDB instance with the specified name
+
+ start|s &quot;instance name&quot;
+    Starts the LocalDB instance with the specified name
+
+ stop|p &quot;instance name&quot; [-i|-k]
+    Stops the LocalDB instance with the specified name,
+    after current queries finish
+    -i request LocalDB instance shutdown with NOWAIT option
+    -k kills LocalDB instance process without contacting it
+
+ share|h [&quot;owner SID or account&quot;] &quot;private name&quot; &quot;shared name&quot;
+    Shares the specified private instance using the specified shared name.
+    If the user SID or account name is omitted, it defaults to current user.
+
+ unshare|u &quot;shared name&quot;
+    Stops the sharing of the specified shared LocalDB instance.
+
+ info|i
+    Lists all existing LocalDB instances owned by the current user
+    and all shared LocalDB instances.
+
+ info|i &quot;instance name&quot;
+    Prints the information about the specified LocalDB instance.
+
+ versions|v
+    Lists all LocalDB versions installed on the computer.
+
+ trace|t on|off
+    Turns tracing on and off
+
+SqlLocalDB treats spaces as delimiters. It is necessary to surround
+instance names that contain spaces and special characters with quotes.
+For example:
+SqlLocalDB create &quot;My LocalDB Instance&quot;
+</code></pre></div>
+        <div class="post-footer">
+            <div class="info">
+                <span class="separator"><a class="category" href="/categories/mssql/">MSSQL</a></span>
+                
+            </div>
+        </div>
+		
+        
+            
+			<div id="hashover"></div>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js"
+        integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w="
+        crossorigin="anonymous"></script></body>
+
+</html>

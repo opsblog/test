@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>MSSQL on opsblog.de</title>
+    <link>https://opsblog.de/categories/mssql/</link>
+    <description>Recent content in MSSQL on opsblog.de</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de</language>
+    <lastBuildDate>Fri, 06 Jan 2017 14:16:59 +0000</lastBuildDate><atom:link href="https://opsblog.de/categories/mssql/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>SQL Server localdb – Mehrere Versionen verwalten</title>
+      <link>https://opsblog.de/2017/01/06/sql-server-localdb-mehrere-versionen-verwalten/</link>
+      <pubDate>Fri, 06 Jan 2017 14:16:59 +0000</pubDate>
+      
+      <guid>https://opsblog.de/2017/01/06/sql-server-localdb-mehrere-versionen-verwalten/</guid>
+      <description>&lt;p&gt;Vor einiger Zeit habe ich &lt;a href=&#34;http://frickelblog.de/2013/01/24/sql-server-2012-localdb/&#34;&gt;HIER&lt;/a&gt; schon mal etwas über SQLServer 2012 localdb geschrieben.&lt;br&gt;
+Mittlerweile gibt es von der localdb installation mehrere Versionen (Aktuell: 2012 / 2014 / 2016).&lt;/p&gt;
+&lt;p&gt;Um Herauszufinden welche Versionen auf dem System installiert sind, kann der Befehl „sqllocaldb versions“ genutzt werden:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;E:\Programme\cmder&amp;gt;sqllocaldb versions
+Microsoft SQL Server 2012 (11.0.5058.0)
+Microsoft SQL Server 2014 (12.0.4100.1)
+Microsoft SQL Server 2016 (13.0.1601.5)
+Microsoft SQL Server 2017 (14.0.1000.169)
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Standardmäßig wird eine neue Datenbank-Instanz über den „Create“-Befehl mit der aktuelleren Version angelegt.&lt;br&gt;
+Möchte man eine Instanz mit der 2012er Version anlegen, geht dies so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;E:\Programme\cmder&amp;gt;sqllocaldb create SQL2012 11.0.5058.0
+LocalDB instance &amp;quot;SQL2012&amp;quot; created with version 11.0.5058.0.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Und für die 2014er Version so:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;E:\Programme\cmder&amp;gt;sqllocaldb create SQL2014 12.0.4100.1
+LocalDB instance &amp;quot;SQL2014&amp;quot; created with version 12.0.4100.1.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Ebenfalls kann so auch explizit eine 2016er Instanz angelegt werden:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;E:\Programme\cmder&amp;gt;sqllocaldb create SQL2016 13.0.1601.5
+LocalDB instance &amp;quot;SQL2016&amp;quot; created with version 13.0.1601.5.
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Oder für eine 2017er Instanz:&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;E:\Programme\cmder&amp;gt;sqllocaldb create SQL2017 14.0.1000.169
+LocalDB instance &amp;quot;SQL2017&amp;quot; created with version 14.0.1000.169.
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

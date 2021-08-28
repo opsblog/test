@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Linux on opsblog.de</title>
+    <link>https://opsblog.de/categories/linux/</link>
+    <description>Recent content in Linux on opsblog.de</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de</language>
+    <lastBuildDate>Sat, 21 Mar 2020 21:36:27 +0000</lastBuildDate><atom:link href="https://opsblog.de/categories/linux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Einfaches VPN mit Wireguard für Homeoffice</title>
+      <link>https://opsblog.de/2020/03/21/einfaches-vpn-mit-wireguard-fuer-homeoffice/</link>
+      <pubDate>Sat, 21 Mar 2020 21:36:27 +0000</pubDate>
+      
+      <guid>https://opsblog.de/2020/03/21/einfaches-vpn-mit-wireguard-fuer-homeoffice/</guid>
+      <description>Aufgrund der „Corona-Kriese“ möchte auch ich etwas für unser Land tun und hier eine leicht Verständliche Anleitung schreiben wie man einen VPN-Zugang mithilfe von Wireguard für die Anwendung im Homeoffice einrichten kann.</description>
+    </item>
+    
+  </channel>
+</rss>

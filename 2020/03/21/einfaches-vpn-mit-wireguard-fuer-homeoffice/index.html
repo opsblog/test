@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="de" data-theme=""><head>
+    <title> opsblog.de | Einfaches VPN mit Wireguard für Homeoffice </title>
+
+    
+    <meta charset="utf-8"><meta name="generator" content="Hugo 0.87.0" /><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+    <meta name="description" content="Memorien aus dem Leben eines XOps">
+    
+    <link rel="stylesheet"
+          href="/css/style.min.4d3663c7794780cdf00e772bf7d6494f9b6a9bd42fb29baae1cd12bfa94a9563.css"
+          integrity="sha256-TTZjx3lHgM3wDncr99ZJT5tqm9Qvspuq4c0Sv6lKlWM="
+          crossorigin="anonymous"
+          type="text/css">
+    
+    <link rel="stylesheet"
+        href="/css/markupHighlight.min.f798cbda9aaa38f89eb38be6414bd082cfd71a6780375cbf67b6d2fb2b96491e.css"
+        integrity="sha256-95jL2pqqOPies4vmQUvQgs/XGmeAN1y/Z7bS&#43;yuWSR4="
+        crossorigin="anonymous"
+        type="text/css">
+    
+    <link rel="stylesheet" 
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" 
+    integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" 
+    crossorigin="anonymous" />
+
+    
+    <link rel="shortcut icon" href="/favicons/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+
+    <link rel="canonical" href="/2020/03/21/einfaches-vpn-mit-wireguard-fuer-homeoffice/">
+
+    
+    
+    
+    
+    <script type="text/javascript"
+            src="/js/anatole-header.min.0c05c0a90d28c968a1cad4fb31abd0b8e1264e788ccefed022ae1d3b6f627514.js"
+            integrity="sha256-DAXAqQ0oyWihytT7MavQuOEmTniMzv7QIq4dO29idRQ="
+            crossorigin="anonymous"></script>
+
+
+    
+        
+        
+        <script type="text/javascript"
+                src="/js/anatole-theme-switcher.min.47918423907d577c1f04c2fd28730186eca486fb18e52fc882c3c7ad5f2540b1.js"
+                integrity="sha256-R5GEI5B9V3wfBML9KHMBhuykhvsY5S/IgsPHrV8lQLE="
+                crossorigin="anonymous"></script>
+    
+    <meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://opsblog.de/images/site-feature-image.png"/>
+
+<meta name="twitter:title" content="Einfaches VPN mit Wireguard für Homeoffice"/>
+<meta name="twitter:description" content="Aufgrund der „Corona-Kriese“ möchte auch ich etwas für unser Land tun und hier eine leicht Verständliche Anleitung schreiben wie man einen VPN-Zugang mithilfe von Wireguard für die Anwendung im Homeoffice einrichten kann."/>
+
+
+    
+
+	<link rel="stylesheet" type="text/css" href="/css/syntax.css"> 	
+</head>
+<body><div class="sidebar . ">
+    <div class="logo-title">
+        <div class="title">
+            <img src="/img/logo.png" alt="profile picture">
+            <h3 title=""><a href="/">opsblog.de</a></h3>
+            <div class="description">
+                <p>Memorien aus dem Leben eines XOps</p>
+            </div>
+        </div>
+    </div>
+    <ul class="social-links">
+        
+    </ul>
+	
+    <div class="footer">
+		
+		<h3 title="">Tags</h3>
+		<ul class="social-links">
+		
+			<li><a class="categorymini" href="https://opsblog.de/categories/linux/">Linux</a></li> 
+		
+			<li><a class="categorymini" href="https://opsblog.de/categories/arduino/">Arduino</a></li> 
+		
+			<li><a class="categorymini" href="https://opsblog.de/categories/mssql/">MSSQL</a></li> 
+		
+		</ul>
+	
+        <div class="by_farbox">&copy; opsblog.de  2021 </div>
+    </div>
+</div>
+<div class="main">
+    <div class="page-top  . ">
+    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+    </a>
+    <ul class="nav" id="navMenu">
+        
+        
+            
+            <li><a 
+                   href="/"
+                        
+                   title="">Home</a></li>
+        
+            
+            <li><a 
+                   href="/post/"
+                        
+                   title="">Blog-Post Liste</a></li>
+        
+            
+            <li><a 
+                   href="/categories/"
+                        
+                   title="">Tag Liste</a></li>
+        
+            
+            <li><a 
+                   href="/search/"
+                        
+                   title="">Suche</a></li>
+        
+            
+            <li><a 
+                   href="/kontakt/"
+                        
+                   title="">Kontakt</a></li>
+        
+            
+            <li><a 
+                   href="/datenschutz/"
+                        
+                   title="">Datenschutz</a></li>
+        
+            
+            <li><a 
+                   href="/impressum/"
+                        
+                   title="">Impressum</a></li>
+        
+        
+        
+            <li class="theme-switch-item">
+                <a class="theme-switch" title="Switch Theme">
+                    <i class="fas fa-adjust fa-fw" aria-hidden="true"></i>
+                </a>
+            </li>
+        
+    </ul>
+</div>
+
+    <div class="autopagerize_page_element">
+        <div class="content">
+    <div class="post  . ">
+        <div class="post-content">
+            
+            <div class="post-title">
+                <h3>Einfaches VPN mit Wireguard für Homeoffice</h3>
+                
+                    <div class="info">
+                        <em class="fas fa-calendar-day"></em>
+                        <span class="date"> 
+                                                21.03.2020 - 21:36 Uhr
+                                           </span>
+                        <em class="fas fa-stopwatch"></em>
+                        <span class="reading-time">5 Minuten zum Lesen</span>
+                    </div>
+                
+            </div>
+
+            <p>Aufgrund der „Corona-Kriese“ möchte auch ich etwas für unser Land tun und hier eine leicht Verständliche Anleitung schreiben wie man einen VPN-Zugang mithilfe von Wireguard für die Anwendung im Homeoffice einrichten kann.</p>
+<p><a href="https://www.wireguard.com">Wireguard</a> ist eine recht neue VPN-Lösung mit einem sehr schlanken und effizienten Protokoll, welches sich zudem auch noch sehr einfach einrichten lässt (im Vergleich z.B. zu OpenVPN).<br>
+Im Idealfall nutzen wir als Host-Betriebssystem für den Server ein Debian-Derivat-Linux mit einem 5.x Kernel, da die Wireguard Kernelmodule in Kerneln ab Version 5 bereits einkompiliert sind und man diese dann nicht selbst für den aktuell verwendeten Kernel neu bauen muss.</p>
+<p>Hat man nicht den Genuss einen 5er Linux Kernel zu nutzen oder auf ihn zu upgraden, muss man die Wiregiard-Kernel Module für den verwendeten Kernel selbst bauen.<br>
+Dazu Installieren wir das Meta-Paket „wireguard“ aus dem Unstable zweig, welches dann die Pakete „wireguard-dkms“ und „wireguard-tools“ installiert:</p>
+<pre><code># echo &quot;deb http://deb.debian.org/debian/ unstable main&quot; | sudo tee /etc/apt/sources.list.d/unstable-wireguard.list
+# printf 'Package: *\nPin: release a=unstable\nPin-Priority: 90\n' | sudo tee /etc/apt/preferences.d/limit-unstable
+# apt update
+# apt install wireguard
+</code></pre><p>Nun werden die besagten Pakete „wireguard-dkms“ und „wireguard-tools“ installiert und „wireguard-dkms“ sorgt dafür dass das Kernel-Modul erstellt wird:</p>
+<pre><code>Holen:1 http://deb.debian.org/debian unstable/main amd64 wireguard-dkms all 0.0.20200215-2 [252 kB]
+Holen:2 http://deb.debian.org/debian unstable/main amd64 wireguard-tools amd64 1.0.20200206-2 [85,2 kB]
+Holen:3 http://deb.debian.org/debian unstable/main amd64 wireguard all 1.0.20200206-2 [7.316 B]
+Es wurden 345 kB in 0 s geholt (1.497 kB/s).
+Vormals nicht ausgewähltes Paket wireguard-dkms wird gewählt.
+(Lese Datenbank ... 67277 Dateien und Verzeichnisse sind derzeit installiert.)
+Vorbereitung zum Entpacken von .../wireguard-dkms_0.0.20200215-2_all.deb ...
+Entpacken von wireguard-dkms (0.0.20200215-2) ...
+Vormals nicht ausgewähltes Paket wireguard-tools wird gewählt.
+Vorbereitung zum Entpacken von .../wireguard-tools_1.0.20200206-2_amd64.deb ...
+Entpacken von wireguard-tools (1.0.20200206-2) ...
+Vormals nicht ausgewähltes Paket wireguard wird gewählt.
+Vorbereitung zum Entpacken von .../wireguard_1.0.20200206-2_all.deb ...
+Entpacken von wireguard (1.0.20200206-2) ...
+wireguard-dkms (0.0.20200215-2) wird eingerichtet ...
+Loading new wireguard-0.0.20200215 DKMS files...
+Building for 4.9.0-6-amd64
+Building initial module for 4.9.0-6-amd64
+Done.
+
+wireguard:
+Running module version sanity check.
+ - Original module
+   - No original module exists within this kernel
+ - Installation
+   - Installing to /lib/modules/4.9.0-6-amd64/updates/dkms/
+
+depmod....
+
+DKMS: install completed.
+wireguard-tools (1.0.20200206-2) wird eingerichtet ...
+wireguard (1.0.20200206-2) wird eingerichtet ...
+Trigger für man-db (2.7.6.1-2) werden verarbeitet ...
+</code></pre><p>Damit haben wir Wireguard und das passende Kernel-Modul installiert und können nun an die Konfiguration gehen.<br>
+Hierfür gehen wir in /etc/wireguard und erstellen uns einen public-key und einen private-key:</p>
+<pre><code># cd /etc/wireguard
+# wg genkey | tee privatekey | wg pubkey &gt; publickey
+</code></pre><p>Für mein Beispiel nutze ich folgende Keys:</p>
+<pre><code>Private: 8NTdGTXDBH2pGLb08nMC007ZjpQE666PYrqmgyASUS=  
+Public: I2btYR+gLPYDi76p/MyAnniSWbubELyh5YHoseKxu0s=
+</code></pre><p>Der Private-Key wird für die Server-Config genutzt. Der Public-Key wird dann in der Config der Clients hinterlegt.<br>
+Sinnvollerweise befinden sich die VPN-Clients alle in einem seperaten IP-Netz (10.0.0.x) wobei der VPN-Server die IP 10.0.0.1 bekommt und der erste Client dann die 10.0.0.2.<br>
+Mit diesem Wissen erstellen wir nun die Server-Konfiguration in /etc/wireguard/wg0.conf:</p>
+<pre><code>[Interface]
+Address = 10.0.0.1/24
+SaveConfig = false
+PostUp   = iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE; 
+PostDown = iptables -D FORWARD -i wg0 -j ACCEPT; iptables -D FORWARD -o wg0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE; 
+ListenPort = 51820
+FwMark = 0xca6c
+PrivateKey = 8NTdGTXDBH2pGLb08nMC007ZjpQE666PYrqmgyASUS=
+</code></pre><p>Das war es auch schon grundsätzlich zur Server-Config. Später mussen hier noch die Zugänge der Clients mit rein – das folgt weiter unten.<br>
+Der Wireguard-Server läuft auf Port 51820, was bedeutet das wir diesen Port in der Firewall freigeben bzw ein Portforwarding für diesen Port erstellen müssen.<br>
+Ausserdem muss der Eintrag „net.ipv4.ip_forward = 1“ in der /etc/sysctl.conf auskommentiert werden.</p>
+<p>Mein Wireguard Client ist ein Windows10 PC.<br>
+Die Client-Installation können wir uns unter <a href="https://www.wireguard.com/install">https://www.wireguard.com/install</a> bzw. als Direktlink (64Bit) unter <a href="https://download.wireguard.com/windows-client/wireguard-amd64-0.1.0.msi">https://download.wireguard.com/windows-client/wireguard-amd64-0.1.0.msi</a> herunterladen und installieren.<br>
+Nachdem Wireguard auf dem Client installiert und geöffnet ist, können wir über „Strg+N“ oder „Add empty Tunnel..“ einen neuen Tunnel definieren.<br>
+Wichtig ist hier als erstes der Public-Key welcher oben eingeblendet wird (z.B. 6n89/e9rMmXYaymRDMYnnjJ7LgiVnP6GKplHYN6+BQY=).<br>
+Diesen Client-PublicKey brauchen wir um den Client in der Server-Config mit aufzunehmen.<br>
+An dieser Stelle geht es aber erst einmal mit der Client-Config weiter.</p>
+<pre><code># Angabe des VPN-Client (PrivateKey und VPN-IP)
+[Interface]
+PrivateKey = 8OvLmuLKv2GUSfeJ4bcEGF2mTeuySKJhoBQPlSgmGUA=
+Address = 10.0.0.2/32
+
+# Angabe des VPN-Servers (Public-Key, IP´s welche über VPN geroutet werden und der Endpunkt des VPN-Servers)
+[Peer]
+PublicKey = I2btYR+gLPYDi76p/MyAnniSWbubELyh5YHoseKxu0s=
+AllowedIPs = 10.0.0.1, 192.168.1.0/24
+Endpoint = vpn.meinefirma.de:51820
+</code></pre><p>Kurze Erklärung: Mein „Firmen-Netz“, welches ich über den VPN-Tunnel erreichen möchte ist das 192.168.1.x Netz.<br>
+Über den Eintrag „AllowedIPs“ gebe ich hier an welche IP´s/Netze über den VPN-Tunnel geroutet werden sollen.</p>
+<p>Im Wireguard-Client selbst sieht das ganze dann so aus:<br>
+<img src="/img/2020-03-21-einfaches-vpn-mit-wireguard-fuer-homeoffice/wg_client1.png" alt="img1"></p>
+<p>Jetzt müssen wir weider zurück zu der Server-Config und den Client in der Konfiguration mit angeben.<br>
+Dafür fügen wir Analog zur Client-Config auch einen [Peer] Abschnitt unten mit in die /etc/wireguard/wg0.conf ein:</p>
+<pre><code># VPN-Client Sven (Angabe des PublicKey und der IP des Clients)
+[Peer]
+PublicKey = 6n89/e9rMmXYaymRDMYnnjJ7LgiVnP6GKplHYN6+BQY=
+AllowedIPs = 10.0.0.2/32
+</code></pre><p>Das wars auch schon. Jetzt haben wir Wireguard auf Server und Client Installiert und eingerichtet.<br>
+Dann wollen wir den Server auch mal starten. Der Start und Stop funktioniert über die wg-quick Befehle.<br>
+Zum Starten reicht ein „wg-quick up wg0“ und zum beenden analog dazu ein „wg-quick down wg0“.<br>
+Die Ausgabe des „wg-quick up wg0“ sollte dann so aussehen:</p>
+<pre><code># wg-quick up wg0
+[#] ip link add wg0 type wireguard
+[#] wg setconf wg0 /dev/fd/63
+[#] ip -4 address add 10.0.0.1/24 dev wg0
+[#] ip link set mtu 1420 up dev wg0
+[#] iptables -A FORWARD -i wg0 -j ACCEPT; iptables -A FORWARD -o wg0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE;
+</code></pre><p>Damit läuft Wireguard als VPN-Server.<br>
+Im Windows-Client muss man nun nur noch auf dem Knopf „Activate“ drücken – und es wird eine Verbindung zum VPN-Server aufgebaut.<br>
+Ab nun können wir von „remote“ auf das „Firmen“-Netz zugreifen.</p>
+</div>
+        <div class="post-footer">
+            <div class="info">
+                <span class="separator"><a class="category" href="/categories/linux/">Linux</a></span>
+                
+            </div>
+        </div>
+		
+        
+            
+			<div id="hashover"></div>
+    </div>
+
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript"
+        src="/js/medium-zoom.min.2d6fd0be87fa98f0c9b4dc2536b312bbca48757f584f6ea1f394abc9bcc38fbc.js"
+        integrity="sha256-LW/Qvof6mPDJtNwlNrMSu8pIdX9YT26h85SrybzDj7w="
+        crossorigin="anonymous"></script></body>
+
+</html>

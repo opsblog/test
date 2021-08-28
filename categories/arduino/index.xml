@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Arduino on opsblog.de</title>
+    <link>https://opsblog.de/categories/arduino/</link>
+    <description>Recent content in Arduino on opsblog.de</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>de</language>
+    <lastBuildDate>Tue, 07 Aug 2018 18:16:38 +0000</lastBuildDate><atom:link href="https://opsblog.de/categories/arduino/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Arduino – Einführung</title>
+      <link>https://opsblog.de/2018/08/07/arduino-einfuehrung/</link>
+      <pubDate>Tue, 07 Aug 2018 18:16:38 +0000</pubDate>
+      
+      <guid>https://opsblog.de/2018/08/07/arduino-einfuehrung/</guid>
+      <description>Dies ist der erste Teil einer Arduino-Reihe.
+Aufgrund aktueller Projekte habe ich wieder vermehrt mit Arduino zu tun, so dass ich in meinen Unterlagen von 2016 rumsuchen und experimentieren musste – also wollte ich meine Unterlagen in diesem Zuge gleich mit digitalisieren.</description>
+    </item>
+    
+  </channel>
+</rss>
